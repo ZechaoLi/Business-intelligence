@@ -1,0 +1,13 @@
+
+# Thinking1
+
+基于Embedding的搜索排序
+
+	Step1，准备3种embedding值，Listing Embedding，User Type Embedding和Listing Type Embedding
+	Step2，获取基础指标H∗
+	Step3，提取地区embedding
+	用户在进行Query的时候，地区是重要的特征，先通过H*获取用户的近期行为，因为listing embedding里面包含了地区之间的差异信息，计算每个地区所有listing embedding的均值作为这个地区的embedding，代表用户对该地区的偏好。
+	Step4，计算Embedding Features
+	比如EmbClickSim，针对每一个候选的listing，计算候选listing的listing embedding与地区embedding之间的余弦相似度相似度，取最高值作为该listing的EmbClickSim取值
+	UserTypeListingTypeSim，计算每一个候选listing所在的listing type embedding和用户的user type embedding之间的相似度
+	Step5，在原有的Ranking Model中加入embedding features进行计算
